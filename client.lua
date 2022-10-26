@@ -1,5 +1,4 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-local attachedChair = nil
 local SurvivalPed = nil
 
 --##### Threads #####--
