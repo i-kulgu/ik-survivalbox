@@ -1,7 +1,7 @@
 Config = {
     Ped = {
         model = `a_m_m_genfat_02`,
-        location = vector4(412.1, 315.14, 103.13, 201.84),
+        location = vector4(198.85, -950.92, 29.09, 68.52),
     },
 
     -- random = is it a random item, set false to give 1 of that item as default
