@@ -4,6 +4,12 @@ Create boxes that gives you random / static / lucky items upon opening the box.
 
 ( For any help you can reach us at Discord: [Hi-Dev](https://discord.com/invite/pSJPPctrNx) )
 
+# Installation:
+
+- Drag and drop the folder in your resources
+- Start the resource
+- Enjoy
+
 # Workflow:
 
 - Setup boxes
