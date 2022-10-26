@@ -8,7 +8,7 @@ CreateThread(function()
     local SurvivalPed = CreatePed(2, Config.Ped.model, Config.Ped.location, false, false)
     SetPedFleeAttributes(SurvivalPed, 0, 0)
     SetEntityInvincible(SurvivalPed, true)
-    TaskStartScenarioInPlace(SurvivalPed, "PROP_HUMAN_SEAT_CHAIR", 0, true)
+    TaskStartScenarioInPlace(SurvivalPed, "PROP_HUMAN_SEAT_CHAIR", 2, true)
     SetBlockingOfNonTemporaryEvents(SurvivalPed, true)
     FreezeEntityPosition(SurvivalPed, true)
 
@@ -23,11 +23,12 @@ end)
 RegisterNetEvent("ik-survivalbox:client:OpenMenu", function()
     local ShopMenu = {}
     ShopMenu[#ShopMenu+1] = {header = "Survival Shop", isMenuHeader = true}
-    ShopMenu[#ShopMenu+1] = {header = "", txt = "❌ Close", params {event = "ik-survivalbox:client:closeMenu"}}
+    ShopMenu[#ShopMenu+1] = {header = "", txt = "❌ Close", params = {event = "ik-survivalbox:client:closeMenu"}}
 
     for k,v in pairs(Config.Boxes) do
-        ShopMenu[#ShopMenu+1] = {header = v.name, txt = v.desc, params {event = "ik-survivalbox:client:buyItem", args { box = k, price = v.price} }}
+        ShopMenu[#ShopMenu+1] = {header = v.name, txt = v.desc, params = {event = "ik-survivalbox:client:buyItem", args =  { box = k, price = v.price}}}
     end
+    exports["qb-menu"]:openMenu(ShopMenu)
 end)
 
 --##### Events #####--
@@ -41,7 +42,7 @@ RegisterNetEvent("ik-survivalbox:client:openBox", function(itemname)
     local coords    = GetEntityCoords(playerPed)
     local forward   = GetEntityForwardVector(playerPed)
     local x, y, z   = table.unpack(coords + forward * 1.0)
-    local text = QBCore.Shared.Items[tostring(itemname)].label
+    local text = QBCore.Shared.Items[itemname].label
 
     local model = Config.Boxes[itemname].prop
     RequestModel(model)
@@ -51,19 +52,21 @@ RegisterNetEvent("ik-survivalbox:client:openBox", function(itemname)
     local box = CreateObject(model, x, y, z, true, true, false)
     PlaceObjectOnGroundProperly(box)
 
-    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
+    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic4"})
     QBCore.Functions.Progressbar('boxopening', 'Opening '..text..'...', 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
         disableCombat = true,
     }, {
-        animDict = 'amb@world_human_vehicle_mechanic@male@base',
-        anim = 'base',
+        animDict = 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@',
+        anim = 'machinic_loop_mechandplayer',
         flags = 16,
     }, {}, {}, function()
-        StopAnimTask(PlayerPedId(),'amb@world_human_vehicle_mechanic@male@base','base',1.0)
+        StopAnimTask(PlayerPedId(),'anim@amb@clubhouse@tutorial@bkr_tut_ig3@','machinic_loop_mechandplayer',1.0)
         DeleteEntity(box)
         TriggerServerEvent("ik-survivalbox:server:giveItems", itemname)
     end)
 end)
+
+RegisterNetEvent("ik-survivalbox:client:closeMenu", function() exports["qb-menu"]:closeMenu() end)
