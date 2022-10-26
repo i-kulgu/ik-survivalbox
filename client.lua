@@ -1,6 +1,17 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local attachedChair = nil
 local SurvivalPed = nil
+
+--##### Functions #####--
+
+local function makeProp(data, freeze, synced)
+    loadModel(data.prop)
+    local prop = CreateObject(data.prop, data.coords.x, data.coords.y, data.coords.z-1.03, synced or 0, synced or 0, 0)
+    SetEntityHeading(prop, data.coords.w)
+    FreezeEntityPosition(prop, freeze or 0)
+    return prop
+end
+
 --##### Threads #####--
 
 CreateThread(function()
