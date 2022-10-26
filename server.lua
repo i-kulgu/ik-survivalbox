@@ -42,6 +42,7 @@ RegisterNetEvent("ik-survivalbox:server:giveItems", function(boxname)
     if Player.Functions.RemoveItem(boxname, 1) then
         for k,v in pairs(Config.Boxes[boxname].items) do
             if v.random then amount = math.random(v.min, v.max) else amount = 1 end
+            if v.luck and v.luck > 0 then useluck = true else useluck = false end
             if useluck then
                 if v.luck <= chance then
                     if Player.Functions.AddItem(k, amount) then
