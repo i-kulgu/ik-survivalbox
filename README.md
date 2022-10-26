@@ -12,7 +12,9 @@ Create boxes that gives you random / static / lucky items upon opening the box.
 
 # Setup
 
-Add the following items to qb-core\shared\items.lua
+- Copy the images from images folder to [your-inventory]\html\images 
+
+- Add the following items to qb-core\shared\items.lua
 
 ```lua
    -- ik-survivalbox
@@ -21,7 +23,7 @@ Add the following items to qb-core\shared\items.lua
    ['big_survivalbox'] 			 	 = {['name'] = 'big_survivalbox', 			['label'] = 'Big Survival Box', 		['weight'] = 350, 		['type'] = 'item', 		['image'] = 'big_survivalbox.png', 		['unique'] = false,    ['useable'] = true, 	   ['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'Big box with some rare items'},
    ```
 
-If you add other boxes then add those too
+- If you add other boxes then add those too
 
 # Workflow:
 
