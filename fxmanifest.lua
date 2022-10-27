@@ -5,7 +5,7 @@ description "Survival box script by Proportions#8460"
 fx_version "cerulean"
 game "gta5"
 
-shared_script{'config.lua'}
+shared_script{'@qb-core/shared/locale.lua', 'locales/*.lua', 'config.lua'}
 server_scripts{'server.lua'}
 client_scripts{'client.lua'}
 

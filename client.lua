@@ -13,9 +13,9 @@ CreateThread(function()
     TaskStartScenarioInPlace(SurvivalPed, "WORLD_HUMAN_TOURIST_MAP", 0, true)
     SetBlockingOfNonTemporaryEvents(SurvivalPed, true)
     FreezeEntityPosition(SurvivalPed, true)
-
+    local label = Lang:t("target.shop")
     exports['qb-target']:AddTargetEntity(SurvivalPed, {
-        options = {{ num = 1, event = "ik-survivalbox:client:OpenMenu", icon = 'fas fa-box-full', label = 'Survival Shop',}},
+        options = {{ num = 1, event = "ik-survivalbox:client:OpenMenu", icon = 'fas fa-box-full', label = label,}},
         distance = 2.5,
     })
 end)
@@ -24,11 +24,11 @@ end)
 
 RegisterNetEvent("ik-survivalbox:client:OpenMenu", function()
     local ShopMenu = {}
-    ShopMenu[#ShopMenu+1] = {header = "Survival Shop", isMenuHeader = true}
-    ShopMenu[#ShopMenu+1] = {header = "", txt = "❌ Close", params = {event = "ik-survivalbox:client:closeMenu"}}
+    ShopMenu[#ShopMenu+1] = {header = Lang:t('menu.header'), isMenuHeader = true}
+    ShopMenu[#ShopMenu+1] = {header = "", txt = Lang:t('menu.close'), params = {event = "ik-survivalbox:client:closeMenu"}}
 
     for k,v in pairs(Config.Boxes) do
-        ShopMenu[#ShopMenu+1] = {header = v.name, txt = v.desc, params = {event = "ik-survivalbox:client:buyItem", args =  { box = k, price = v.price}}}
+        ShopMenu[#ShopMenu+1] = {header = Lang:t(v.name), txt = Lang:t(v.desc), params = {event = "ik-survivalbox:client:buyItem", args =  { box = k, price = v.price}}}
     end
     exports["qb-menu"]:openMenu(ShopMenu)
 end)
@@ -55,7 +55,7 @@ RegisterNetEvent("ik-survivalbox:client:openBox", function(itemname)
     PlaceObjectOnGroundProperly(box)
 
     TriggerEvent('animations:client:EmoteCommandStart', {"mechanic4"})
-    QBCore.Functions.Progressbar('boxopening', 'Opening '..text..'...', 5000, false, true, {
+    QBCore.Functions.Progressbar('boxopening', Lang:t('info.opening')..' '..text..'...', 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,

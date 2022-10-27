@@ -19,7 +19,7 @@ RegisterNetEvent("ik-survivalbox:server:buyBox", function(item, price)
             TriggerClientEvent("ik-survivalbox:client:OpenMenu", src)
         end
     else
-        TriggerClientEvent('QBCore:Notify', src, "You don't have enoug money!", 'error', 3000)
+        TriggerClientEvent('QBCore:Notify', src, Lang:t('error.nomoney'), 'error', 3000)
     end
 end)
 

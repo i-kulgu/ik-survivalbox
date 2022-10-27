@@ -10,8 +10,8 @@ Config = {
     -- luck = if you want to give the item with a luck percentage then fill in the percentage here between 1 and 100
     Boxes = {
         ["small_survivalbox"] = {
-            name = "🎁 Small Survival Box",
-            desc = "Small box of basic items",
+            name = 'menu.ssb',
+            desc = 'menu.ssbd',
             price = 200,
             prop = `prop_cs_box_clothes`,
             items = {
@@ -21,8 +21,8 @@ Config = {
             }
        },
         ["medium_survivalbox"] = {
-            name = "🎁 Medium Survival Box",
-            desc = "Medium box with commonly needed items",
+            name = 'menu.msb',
+            desc = 'menu.msbd',
             price = 500,
             prop = `prop_cs_cardbox_01`,
             items = {
@@ -35,8 +35,8 @@ Config = {
             }
         },
         ["big_survivalbox"] = {
-            name = "🎁 Big Survival Box",
-            desc = "Big box with some rare items",
+            name = 'menu.bsb',
+            desc = 'menu.bsbd',
             price = 1500,
             prop = `prop_cs_rub_box_01`,
             items = {
